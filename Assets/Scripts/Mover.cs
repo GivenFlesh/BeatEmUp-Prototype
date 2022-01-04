@@ -6,6 +6,7 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 25;
+    [Range(1,0)] [SerializeField] float zOffsetRatio = 0.5f;
 
     SpriteRenderer _renderer;
     Rigidbody2D _rigidBody;
@@ -16,14 +17,12 @@ public class Mover : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
-    {
-
-    }
-
     public void Move(Vector2 direction)
     {
-        Vector2 delta = direction * moveSpeed * (Time.fixedDeltaTime * 10f);
+
+        Vector2 delta = direction;
+        delta.y *= zOffsetRatio;
+        delta *= moveSpeed * (Time.fixedDeltaTime * 10f);
         _rigidBody.velocity = delta;
         if( Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && _rigidBody.velocity.x != 0)
         {
