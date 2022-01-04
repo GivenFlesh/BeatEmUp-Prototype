@@ -36,6 +36,27 @@ public class Player : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (value.isPressed && !_animator.GetBool("pressedJump")) StartCoroutine(_jumper.ManageAnimatorBools());
+        string animatorBool = "pressedJump";
+        if (value.isPressed && !_animator.GetBool(animatorBool))
+        {
+            StartCoroutine(ManageAnimatorBools(animatorBool));
+        }
+    }
+
+    void OnAttackLight(InputValue value)
+    {
+        string animatorBool = "pressedAttack";
+        if (value.isPressed && !_animator.GetBool(animatorBool))
+        {
+            StartCoroutine(ManageAnimatorBools(animatorBool));
+        }
+    }
+
+
+    IEnumerator ManageAnimatorBools(string animatorBool)
+    {
+        _animator.SetBool(animatorBool,true);
+        yield return new WaitForFixedUpdate();
+        _animator.SetBool(animatorBool,false);
     }
 }
