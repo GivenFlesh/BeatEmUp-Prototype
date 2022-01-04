@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         
     }
 
-    void FixedUpdate()
+    void Update()
     {
         _animator.SetFloat("MoveX",rawInput.x);
         _animator.SetFloat("MoveY",rawInput.y);
@@ -36,6 +36,6 @@ public class Player : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        _jumper.Jump();
+        if (value.isPressed && !_animator.GetBool("pressedJump")) StartCoroutine(_jumper.ManageAnimatorBools());
     }
 }
