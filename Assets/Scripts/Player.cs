@@ -8,15 +8,14 @@ public class Player : MonoBehaviour
 {
     Vector2 rawInput;
     Rigidbody2D _rigidBody;
-    Mover _mover;
     Jumper _jumper;
-    [SerializeField] float moveSpeed = 200;
-
+    Animator _animator;
+    
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
-        _mover = GetComponent<Mover>();
         _jumper = GetComponentInChildren<Jumper>();
+        _animator = _jumper.GetComponent<Animator>();
     }
 
     void Start()
@@ -26,7 +25,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        _mover.Move(_rigidBody,moveSpeed,rawInput);
+        _animator.SetFloat("MoveX",rawInput.x);
+        _animator.SetFloat("MoveY",rawInput.y);
     }
 
     void OnMove(InputValue value)

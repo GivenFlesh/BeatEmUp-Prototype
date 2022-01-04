@@ -970,7 +970,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.9375, y: 1.875}
+    oldSize: {x: 1, y: 1.875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1004,7 +1004,7 @@ Animator:
   m_GameObject: {fileID: 1276144023}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb1a869edfbc8b24793f52f5f642adf1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1117,10 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b95e5ec5ec3074792f64c38a4f15fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddingLeft: 0
-  paddingRight: 0
-  paddingTop: 0
-  paddingBottom: 0
+  moveSpeed: 25
 --- !u!4 &1501796740
 Transform:
   m_ObjectHideFlags: 0
@@ -1186,10 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b95e5ec5ec3074792f64c38a4f15fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddingLeft: 0
-  paddingRight: 0
-  paddingTop: 0
-  paddingBottom: 0
+  moveSpeed: 25
 --- !u!114 &1501796744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,7 +1196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd06d19d67181946899ed796a3f5113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 25
 --- !u!212 &1501796745
 SpriteRenderer:
   m_ObjectHideFlags: 0
