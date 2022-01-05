@@ -7,7 +7,7 @@ public class Damager : MonoBehaviour
     [SerializeField] string damageType;
     [SerializeField] int damageAmount;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Hit!" + other);
     }
