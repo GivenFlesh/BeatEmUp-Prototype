@@ -1174,6 +1174,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6160949963097489547, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160949963172802523, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160949963172802524, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6160949963291504785, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
       propertyPath: m_Name
       value: Player Location

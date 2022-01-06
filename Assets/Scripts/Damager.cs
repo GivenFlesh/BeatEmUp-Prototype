@@ -8,12 +8,31 @@ public class Damager : MonoBehaviour
     [SerializeField] int damageAmount = 2;
     [SerializeField] float stunTime = .4f;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    Collider2D punchTarget;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
         Health targetHP = other.GetComponent<Health>();
         if (targetHP != null)
         {
             targetHP.TakeDamage(damageAmount,stunTime);
+            punchTarget = other;
         }
+    }
+
+    void OnEnable()
+    {
+        if (punchTarget != null)
+        {
+            punchTarget.GetComponent<Health>().TakeDamage(damageAmount,stunTime);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(punchTarget == other)
+        {
+            punchTarget = null;
+        }    
     }
 }

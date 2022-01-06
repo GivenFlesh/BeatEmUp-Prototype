@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        // Destroy(GetComponentInParent<GameObject>());
+        Destroy(transform.parent.gameObject);
     }
 
 }
