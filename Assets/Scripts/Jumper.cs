@@ -28,13 +28,6 @@ public class Jumper : MonoBehaviour
         StartCoroutine(ManageVerticalVelocity());
     }
 
-    public IEnumerator ManageAnimatorBools()
-    {
-        _animator.SetBool("pressedJump",true);
-        yield return new WaitForFixedUpdate();
-        _animator.SetBool("pressedJump",false);
-    }
-
     IEnumerator ManageVerticalVelocity()
     {
         do

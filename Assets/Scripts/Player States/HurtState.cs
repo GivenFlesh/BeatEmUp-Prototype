@@ -2,26 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpStartState : StateMachineBehaviour
+public class HurtState : StateMachineBehaviour
 {
-    Vector2 jumpAngle;
-    Jumper _jumper;
-
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-      _jumper = animator.GetComponent<Jumper>();
+        animator.SetBool("isHit",false);
     }
 
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        float stunTime = animator.GetFloat("stunTime");
+        stunTime -= Time.deltaTime;
+        animator.SetFloat("stunTime",stunTime);
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-      jumpAngle = new Vector2(animator.GetFloat("MoveX"),animator.GetFloat("MoveY"));
-      animator.SetFloat("jumpMomentumX",jumpAngle.x);
-      animator.SetFloat("jumpMomentumY",jumpAngle.y);
-      _jumper.Jump();
+        animator.SetFloat("stunTime",0f);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

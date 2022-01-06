@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6082347669070754856
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 137572697941017785, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_Name
+      value: Player Location
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256932, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+--- !u!1 &6160949963291504785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 137572697941017785, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+  m_PrefabInstance: {fileID: 6082347669070754856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2080295927995582346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6160949963291504785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd06d19d67181946899ed796a3f5113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2412822573720115630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6160949963291504785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 0aa7014dd489e5d48b6bd929b6abb6f8, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
