@@ -605,6 +605,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017791, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017791, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017791, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256929, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256932, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
 --- !u!1 &619394800
@@ -1232,6 +1284,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6160949963291504789, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160949963291504791, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160949963291504791, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160949963291504791, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

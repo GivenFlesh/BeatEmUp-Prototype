@@ -14,6 +14,7 @@ public class Jumper : MonoBehaviour
     Vector3 jumpTarget;
     Animator _animator;
 
+
     void Awake()
     {
         initialPosition = transform.localPosition;
