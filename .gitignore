@@ -67,7 +67,8 @@ crashlytics-build.properties
 
 <<<<<<< HEAD
 # Packed Addressables
-/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*=======
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+=======
 Basics Course/Library/PackageCache/com.unity.burst@1.6.0/.Runtime/hostmac/lld
 UserSettings/Layouts/default-2021.dwlt
 UserSettings/Layouts/default-2021.dwlt
