@@ -10,9 +10,11 @@ public class Jumper : MonoBehaviour
     [Range(1,10)][SerializeField] float jumpMaxHeight = 4f;
     [Range(1,50)][SerializeField] float jumpInitialSpeed = 8f;
     [HideInInspector] public float velocity = 0f;
+    [HideInInspector] public float slopeVariance = 0f;
     Vector3 initialPosition;
     Vector3 jumpTarget;
     Animator _animator;
+
 
 
     void Awake()

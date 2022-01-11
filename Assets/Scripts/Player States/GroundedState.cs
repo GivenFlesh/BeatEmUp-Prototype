@@ -19,7 +19,7 @@ public class GroundedState : StateMachineBehaviour
     {
         Vector2 dpad = new Vector2 (animator.GetFloat("MoveX"),animator.GetFloat("MoveY"));
         _mover.MoveWithAcceleration(dpad);
-        if (dpad.x == 0 || Mathf.Sign(_rigidbody.velocity.x) != Mathf.Sign(dpad.x))
+        if (dpad.x == 0 && !_mover.onSlope || Mathf.Sign(_rigidbody.velocity.x) != Mathf.Sign(dpad.x))
         { _mover.SlowPlayerX(); }
         if (dpad.y == 0 || Mathf.Sign(_rigidbody.velocity.y) != Mathf.Sign(dpad.y))
         { _mover.SlowPlayerY(); }

@@ -12,6 +12,7 @@ public class Mover : MonoBehaviour
     float defaultMoveSpeed;
     int defaultAccelFrames;
     int defaultDecelFrames;
+    [HideInInspector] public bool onSlope = false;
 
     SpriteRenderer _renderer;
     Rigidbody2D _rigidBody;
@@ -60,7 +61,7 @@ public class Mover : MonoBehaviour
         {
             FlipSprite();
         }
-    }   
+    }
 
     public void SlowPlayerX()
     {
@@ -94,4 +95,19 @@ public class Mover : MonoBehaviour
         _rigidBody.velocity = new Vector2(_rigidBody.velocity.x,delta);
     }
 
+    public IEnumerator SlopeMoveX(float strength)
+    {
+        do
+        {
+            Vector2 delta = _rigidBody.velocity;
+            delta.x += strength;
+            _rigidBody.velocity = delta;
+            if(Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && _rigidBody.velocity.x != 0)
+            {
+                FlipSprite();
+            }
+            yield return new WaitForFixedUpdate();
+        }
+        while(onSlope);
+    }
 }

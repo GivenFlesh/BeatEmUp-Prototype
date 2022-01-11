@@ -11,7 +11,7 @@ public class JumpStartState : StateMachineBehaviour
     {
       _jumper = animator.GetComponent<Jumper>();
       _rigidbody = animator.GetComponentInParent<Rigidbody2D>();
-      animator.SetFloat("jumpMomentumX",_rigidbody.velocity.x);
+      animator.SetFloat("jumpMomentumX",_rigidbody.velocity.x+_jumper.slopeVariance);
       animator.SetFloat("jumpMomentumY",_rigidbody.velocity.y);
     }
 
