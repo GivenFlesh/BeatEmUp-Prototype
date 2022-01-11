@@ -1242,6 +1242,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Location
       objectReference: {fileID: 0}
+    - target: {fileID: 6160949963291504786, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160949963291504786, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
+      propertyPath: accelerationFrames
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160949963291504786, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
+      propertyPath: decelerationFrames
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6160949963291504789, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
       propertyPath: m_RootOrder
       value: 3

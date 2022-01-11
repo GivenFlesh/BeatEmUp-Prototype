@@ -15,7 +15,13 @@ public class GroundedState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _mover.Move(new Vector2(animator.GetFloat("MoveX"),animator.GetFloat("MoveY")));
+        Vector2 dpad = new Vector2 (animator.GetFloat("MoveX"),animator.GetFloat("MoveY"));
+        _mover.MoveWithMomentum(dpad);
+        if (dpad.x == 0)
+        { _mover.SlowPlayerX(); }
+        if (dpad.y == 0)
+        { _mover.SlowPlayerY(); }
+
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

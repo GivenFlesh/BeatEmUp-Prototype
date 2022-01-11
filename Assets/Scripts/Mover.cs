@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer),typeof(Rigidbody2D))]
 public class Mover : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 25;
+    [SerializeField] float moveSpeed = 5;
     [Range(1,0)] [SerializeField] float zOffsetRatio = 0.5f;
     [Range(1,500)] public int accelerationFrames = 10;
     [Range(1,500)] public int decelerationFrames = 10;
@@ -49,26 +49,54 @@ public class Mover : MonoBehaviour
 
     public void MoveWithMomentum(Vector2 direction)
     {
-        float delta = _rigidBody.velocity.x;
-        delta += (direction.x*moveSpeed*(1/(float)accelerationFrames));
-        _rigidBody.velocity = new Vector2(Mathf.Clamp(delta,-moveSpeed,moveSpeed),_rigidBody.velocity.y);
+        Vector2 delta = _rigidBody.velocity;
+        if(Mathf.Abs(delta.x) < moveSpeed || Mathf.Sign(direction.x) != Mathf.Sign(delta.x))
+        {
+            delta.x += (direction.x*moveSpeed*(1/(float)accelerationFrames));
+            delta.x = Mathf.Clamp(delta.x,-moveSpeed,moveSpeed);
+        }
+        if(Mathf.Abs(delta.y) < moveSpeed*zOffsetRatio || Mathf.Sign(direction.y) != Mathf.Sign(delta.y))
+        {
+            delta.y += (direction.y*(moveSpeed*zOffsetRatio)*(1/(float)accelerationFrames));
+            delta.y = Mathf.Clamp(delta.y,-moveSpeed,moveSpeed);
+        }
+        _rigidBody.velocity = delta;
+        if(Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && _rigidBody.velocity.x != 0)
+        {
+            FlipSprite();
+        }
     }   
 
-    public void SlowPlayer()
+    public void SlowPlayerX()
     {
         float delta = _rigidBody.velocity.x;
         if (delta > 0f)
         {
-            delta -= (moveSpeed*(1/(float)decelerationFrames))*Time.fixedDeltaTime;
-            delta = Mathf.Clamp(delta,Mathf.Epsilon,moveSpeed*Time.fixedDeltaTime);
+            delta -= moveSpeed*(1/(float)decelerationFrames);
+            delta = Mathf.Clamp(delta,Mathf.Epsilon,moveSpeed);
         }
         if (delta < 0f)
         {
-            delta += (moveSpeed*(1/(float)decelerationFrames))*Time.fixedDeltaTime;
-            delta = Mathf.Clamp(delta,-moveSpeed*Time.fixedDeltaTime,Mathf.Epsilon);
+            delta += moveSpeed*(1/(float)decelerationFrames);
+            delta = Mathf.Clamp(delta,-moveSpeed,Mathf.Epsilon);
         }
         _rigidBody.velocity = new Vector2(delta,_rigidBody.velocity.y);
     }
 
+    public void SlowPlayerY()
+    {
+        float delta = _rigidBody.velocity.y;
+        if (delta > 0f)
+        {
+            delta -= moveSpeed*zOffsetRatio*(1/(float)decelerationFrames);
+            delta = Mathf.Clamp(delta,Mathf.Epsilon,moveSpeed*zOffsetRatio);
+        }
+        if (delta < 0f)
+        {
+            delta += moveSpeed*zOffsetRatio*(1/(float)decelerationFrames);
+            delta = Mathf.Clamp(delta,-moveSpeed*zOffsetRatio,Mathf.Epsilon);
+        }
+        _rigidBody.velocity = new Vector2(_rigidBody.velocity.x,delta);
+    }
 
 }
