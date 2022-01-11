@@ -994,11 +994,7 @@ AnimatorStateMachine:
     m_Position: {x: 40, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7498603582695570512}
-<<<<<<< Updated upstream
     m_Position: {x: 540, y: 80, z: 0}
-=======
-    m_Position: {x: 570, y: 100, z: 0}
->>>>>>> Stashed changes
   - serializedVersion: 1
     m_State: {fileID: -1779975264163481479}
     m_Position: {x: 290, y: 180, z: 0}
