@@ -15,7 +15,10 @@ public class JumpingState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       _mover.Move(jumpMomentum);
+         Vector2 delta = new Vector2 (animator.GetFloat("MoveX"),animator.GetFloat("MoveY"));
+         delta.x += (Mathf.Sign(jumpMomentum.x)*2);   delta.x = Mathf.Abs(delta.x/3f);
+         delta.y += (Mathf.Sign(jumpMomentum.y)*2);   delta.y = Mathf.Abs(delta.y/3f);
+         _mover.MoveFixedSpeed(jumpMomentum*delta);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

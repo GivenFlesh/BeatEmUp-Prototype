@@ -1226,33 +1226,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6160949963097489547, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6160949963172802523, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6160949963172802524, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6160949963291504785, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
       propertyPath: m_Name
       value: Player Location
-      objectReference: {fileID: 0}
-    - target: {fileID: 6160949963291504786, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6160949963291504786, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
-      propertyPath: accelerationFrames
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6160949963291504786, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
-      propertyPath: decelerationFrames
-      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6160949963291504789, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
       propertyPath: m_RootOrder
@@ -1296,18 +1272,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6160949963291504789, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6160949963291504791, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6160949963291504791, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6160949963291504791, guid: ca8573c32736cb24fa5f479913db175a, type: 3}
-      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

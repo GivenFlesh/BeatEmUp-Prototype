@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class JumpStartState : StateMachineBehaviour
 {
-    Vector2 jumpAngle;
     Jumper _jumper;
+    Rigidbody2D _rigidbody;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
       _jumper = animator.GetComponent<Jumper>();
+      _rigidbody = animator.GetComponentInParent<Rigidbody2D>();
+      animator.SetFloat("jumpMomentumX",_rigidbody.velocity.x);
+      animator.SetFloat("jumpMomentumY",_rigidbody.velocity.y);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -18,9 +21,6 @@ public class JumpStartState : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-      jumpAngle = new Vector2(animator.GetFloat("MoveX"),animator.GetFloat("MoveY"));
-      animator.SetFloat("jumpMomentumX",jumpAngle.x);
-      animator.SetFloat("jumpMomentumY",jumpAngle.y);
       _jumper.Jump();
     }
 

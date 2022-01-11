@@ -7,9 +7,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 137572697792961523, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697792961524, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 137572697941017785, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_Name
       value: Player Location
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017786, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017786, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: accelerationFrames
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017786, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: decelerationFrames
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_RootOrder
@@ -53,6 +73,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017791, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017791, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017791, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 137572698116256932, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}

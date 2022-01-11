@@ -29,17 +29,12 @@ public class Mover : MonoBehaviour
         defaultDecelFrames = decelerationFrames;
     }
 
-    public void Move(Vector2 direction)
+    public void MoveFixedSpeed(Vector2 direction)
     {
-
         Vector2 delta = direction;
         delta.y *= zOffsetRatio;
         delta *= moveSpeed * (Time.fixedDeltaTime * 10f);
         _rigidBody.velocity = delta;
-        if( Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && _rigidBody.velocity.x != 0)
-        {
-            FlipSprite();
-        }
     }
 
     void FlipSprite()
@@ -47,7 +42,7 @@ public class Mover : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x*-1,transform.localScale.y,transform.localScale.z);
     }
 
-    public void MoveWithMomentum(Vector2 direction)
+    public void MoveWithAcceleration(Vector2 direction)
     {
         Vector2 delta = _rigidBody.velocity;
         if(Mathf.Abs(delta.x) < moveSpeed || Mathf.Sign(direction.x) != Mathf.Sign(delta.x))
@@ -58,10 +53,10 @@ public class Mover : MonoBehaviour
         if(Mathf.Abs(delta.y) < moveSpeed*zOffsetRatio || Mathf.Sign(direction.y) != Mathf.Sign(delta.y))
         {
             delta.y += (direction.y*(moveSpeed*zOffsetRatio)*(1/(float)accelerationFrames));
-            delta.y = Mathf.Clamp(delta.y,-moveSpeed,moveSpeed);
+            delta.y = Mathf.Clamp(delta.y,-moveSpeed*zOffsetRatio,moveSpeed*zOffsetRatio);
         }
         _rigidBody.velocity = delta;
-        if(Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && _rigidBody.velocity.x != 0)
+        if(Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && direction.x != 0)
         {
             FlipSprite();
         }
@@ -89,12 +84,12 @@ public class Mover : MonoBehaviour
         if (delta > 0f)
         {
             delta -= moveSpeed*zOffsetRatio*(1/(float)decelerationFrames);
-            delta = Mathf.Clamp(delta,Mathf.Epsilon,moveSpeed*zOffsetRatio);
+            delta = Mathf.Clamp(delta,0f,moveSpeed*zOffsetRatio);
         }
         if (delta < 0f)
         {
             delta += moveSpeed*zOffsetRatio*(1/(float)decelerationFrames);
-            delta = Mathf.Clamp(delta,-moveSpeed*zOffsetRatio,Mathf.Epsilon);
+            delta = Mathf.Clamp(delta,-moveSpeed*zOffsetRatio,0f);
         }
         _rigidBody.velocity = new Vector2(_rigidBody.velocity.x,delta);
     }
