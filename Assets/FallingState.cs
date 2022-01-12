@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class FallingState : StateMachineBehaviour
 {
-    Rigidbody2D _rigidbody;
+    Mover _mover;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _rigidbody = animator.transform.parent.GetComponent<Rigidbody2D>();
+        _mover = animator.transform.parent.GetComponent<Mover>();
+        animator.SetBool("isFalling",false);
+        animator.GetComponent<Jumper>().Fall();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log(_rigidbody.velocity);
-        Debug.Log(animator.GetFloat("jumpMomentumX"));
+        _mover.SlowPlayerX();
+        _mover.SlowPlayerY();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

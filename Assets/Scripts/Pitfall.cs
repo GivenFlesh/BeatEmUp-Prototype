@@ -34,21 +34,23 @@ public class Pitfall : MonoBehaviour
         Mover otherMover = other.GetComponent<Mover>();
         if(otherMover != null)
         {
-            Jumper otherJumper = otherMover.GetComponentInChildren<Jumper>();
             otherMover.transform.position = new Vector2(respawnPointX,otherMover.transform.position.y);
-            otherJumper.transform.position = new Vector2(otherJumper.transform.position.x,10f);
-            otherJumper.Fall();
-            otherJumper.GetComponent<Animator>().SetFloat("jumpMomentumX",0);
-            otherJumper.GetComponent<Animator>().SetFloat("jumpMomentumY",0);
-            otherJumper.GetComponent<Health>().TakeDamage(5,0);
             otherMover.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            Jumper otherJumper = otherMover.GetComponentInChildren<Jumper>();
+            otherJumper.transform.position = new Vector2(otherJumper.transform.position.x,10f);
+            otherJumper.SetMaxHeight(11f);
+            otherJumper.GetComponent<Health>().TakeDamage(5,0);
+            Animator otherAnimator = otherJumper.GetComponent<Animator>();
+            otherAnimator.SetBool("isFalling",true);
+            otherAnimator.SetFloat("jumpMomentumX",0);
+            otherAnimator.SetFloat("jumpMomentumY",0);
         }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1,0,0,0.5f);
-        Gizmos.DrawCube(new Vector2(respawnPointX,transform.position.y),new Vector2(1,0.5f));
+        Gizmos.DrawCube(new Vector2(respawnPointX,transform.position.y),new Vector2(1,transform.localScale.y));
     }
     
 }

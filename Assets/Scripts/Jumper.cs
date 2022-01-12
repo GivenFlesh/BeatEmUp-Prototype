@@ -31,26 +31,39 @@ public class Jumper : MonoBehaviour
 
     public void Jump()
     {
-        velocity = jumpInitialSpeed;
-        _animator.SetBool("isAirborn",true);
-        jumpTarget = new Vector3 (initialPosition.x,initialPosition.y+jumpMaxHeight);
-        StartCoroutine(ManageVerticalVelocity());
+        if(!_animator.GetBool("isFalling"))
+        {
+            SetMaxHeight(jumpMaxHeight);
+            _animator.SetBool("isAirborn",true);
+            velocity = jumpInitialSpeed;
+            StartCoroutine(ManageVerticalVelocity());
+        }
     }
 
     public void Fall()
     {
-        velocity = -0.5f;
-        _animator.SetBool("isAirborn",true);
-        _animator.SetBool("isFalling",true);
-        jumpTarget = transform.position+Vector3.up;
-        StartCoroutine(ManageVerticalVelocity());
+        if(_animator.GetBool("isAirborn"))
+        {
+            velocity = 0f;
+        }
+        else
+        {
+            _animator.SetBool("isAirborn",true);
+            velocity = 0f;
+            StartCoroutine(ManageVerticalVelocity());
+        }
+    }
+
+    public void SetMaxHeight(float heightFromGround)
+    {
+        jumpTarget = initialPosition + (Vector3.up*heightFromGround);
     }
 
     IEnumerator ManageVerticalVelocity()
     {
         do
         {
-            CheckCollision();
+            UpdateCollision();
             Vector2 delta = new Vector2();
             delta.y = transform.localPosition.y + (velocity*Time.fixedDeltaTime);
             delta.y = Mathf.Clamp(delta.y,initialPosition.y,jumpTarget.y);
@@ -59,13 +72,12 @@ public class Jumper : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         while ( transform.localPosition != initialPosition );
-        CheckCollision();
+        UpdateCollision();
         velocity = 0;
         _animator.SetBool("isAirborn",false);
-        _animator.SetBool("isFalling",false);
     }
 
-    void CheckCollision()
+    void UpdateCollision()
     {
         if(GetHeight() > 0f) { SetCollision("Pitfall",true); }
         else{ SetCollision("Pitfall",false); }
@@ -73,6 +85,6 @@ public class Jumper : MonoBehaviour
 
     void SetCollision(string layer,bool ignored)
     {
-        Physics2D.IgnoreLayerCollision (gameObject.layer, LayerMask.NameToLayer(layer), ignored);
+        Physics2D.IgnoreLayerCollision (transform.parent.gameObject.layer, LayerMask.NameToLayer(layer), ignored);
     }
 }
