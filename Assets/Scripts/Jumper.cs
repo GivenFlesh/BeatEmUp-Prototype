@@ -19,9 +19,15 @@ public class Jumper : MonoBehaviour
 
     void Awake()
     {
-        initialPosition = transform.localPosition;
         _animator = GetComponent<Animator>();
     }
+
+    void Start()
+    {
+        initialPosition = transform.localPosition;
+    }
+
+    public float GetHeight() { return transform.localPosition.y - initialPosition.y; }
 
     public void Jump()
     {
@@ -31,10 +37,20 @@ public class Jumper : MonoBehaviour
         StartCoroutine(ManageVerticalVelocity());
     }
 
+    public void Fall()
+    {
+        velocity = -0.5f;
+        _animator.SetBool("isAirborn",true);
+        _animator.SetBool("isFalling",true);
+        jumpTarget = transform.position+Vector3.up;
+        StartCoroutine(ManageVerticalVelocity());
+    }
+
     IEnumerator ManageVerticalVelocity()
     {
         do
         {
+            CheckCollision();
             Vector2 delta = new Vector2();
             delta.y = transform.localPosition.y + (velocity*Time.fixedDeltaTime);
             delta.y = Mathf.Clamp(delta.y,initialPosition.y,jumpTarget.y);
@@ -43,8 +59,20 @@ public class Jumper : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         while ( transform.localPosition != initialPosition );
+        CheckCollision();
         velocity = 0;
         _animator.SetBool("isAirborn",false);
+        _animator.SetBool("isFalling",false);
     }
 
+    void CheckCollision()
+    {
+        if(GetHeight() > 0f) { SetCollision("Pitfall",true); }
+        else{ SetCollision("Pitfall",false); }
+    }
+
+    void SetCollision(string layer,bool ignored)
+    {
+        Physics2D.IgnoreLayerCollision (gameObject.layer, LayerMask.NameToLayer(layer), ignored);
+    }
 }
