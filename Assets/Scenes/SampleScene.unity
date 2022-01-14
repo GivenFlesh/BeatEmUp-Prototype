@@ -896,16 +896,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.87
+      value: 4.13
       objectReference: {fileID: 0}
     - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.93
+      value: -4.32
       objectReference: {fileID: 0}
     - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -938,54 +934,6 @@ PrefabInstance:
     - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572697941017791, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572697941017791, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572697941017791, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_MaskInteraction
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 137572698116256929, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 137572698116256932, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: maxHealth
