@@ -81,6 +81,10 @@ public class Jumper : MonoBehaviour
     {
         if(GetHeight() > 0f) { SetCollision("Pitfall",true); }
         else{ SetCollision("Pitfall",false); }
+        if(GetHeight() > 0.75f) { SetCollision("Character",true); }
+        else{ SetCollision("Character",false); }
+        if(GetHeight() > 0.75f) { SetCollision("Obstacle",true); }
+        else{ SetCollision("Obstacle",false); }
     }
 
     void SetCollision(string layer,bool ignored)

@@ -21,11 +21,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137572697941017785, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_Name
-      value: Player Location
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 137572697941017785, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017785, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 137572697941017786, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: moveSpeed
@@ -42,6 +46,10 @@ PrefabInstance:
     - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 137572697941017789, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -99,6 +107,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256933, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fb1a869edfbc8b24793f52f5f642adf1, type: 2}
     - target: {fileID: 137572698116256942, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: m_Layer
       value: 3

@@ -30,15 +30,20 @@ public class Health : MonoBehaviour
         if(currentHealth <= 0) { Die(); }
         else
         {
-            _animator.SetBool("isHit",true);
-            _animator.SetFloat("stunTime",stunTime);
+            if(_animator != null)
+            {
+                _animator.SetBool("isHit",true);
+                _animator.SetFloat("stunTime",stunTime);
+            }
         }
 
     }
 
     void Die()
     {
+        if (transform.parent != null)
         Destroy(transform.parent.gameObject);
+        else Destroy(gameObject);
     }
 
 }
