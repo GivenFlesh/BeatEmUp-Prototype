@@ -40,6 +40,7 @@ public class Pitfall : MonoBehaviour
             otherJumper.transform.position = new Vector2(otherJumper.transform.position.x,10f);
             otherJumper.SetMaxHeight(11f);
             otherJumper.GetComponent<Health>().TakeDamage(5,0);
+            otherJumper.isAirborn = true;
             Animator otherAnimator = otherJumper.GetComponent<Animator>();
             otherAnimator.SetBool("isFalling",true);
             otherAnimator.SetFloat("jumpMomentumX",0);

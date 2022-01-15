@@ -73,7 +73,7 @@ public class Slope : MonoBehaviour
     IEnumerator SlopeClimb(Jumper characterJumper)
     {
         characterJumper.isOnSlope = true;
-        Vector2 originalPosition = characterJumper.initialPosition;
+        Vector2 originalPosition = characterJumper.groundPosition;
         Transform characterTransform = characterJumper.transform.parent;
         float center = minXBounds + (slopeLength/2);
         int enteredDirection = (int)Mathf.Sign(Mathf.Abs(characterTransform.position.x) - Mathf.Abs(center));
@@ -86,17 +86,17 @@ public class Slope : MonoBehaviour
             float delta = Mathf.Abs(maxXBounds-characterTransform.position.x);
             delta /= slopeLength;
             delta = 1 - delta;
-            characterJumper.initialPosition.y = originalPosition.y + (slopeHeight * delta);
+            characterJumper.groundPosition.y = originalPosition.y + (slopeHeight * delta);
             yield return new WaitForEndOfFrame();
         }
         int exitDirection = (int)Mathf.Sign(Mathf.Abs(characterTransform.position.x) - Mathf.Abs(center));
         if (exitDirection == 1)
         {
-            characterJumper.initialPosition = exitRight;
+            characterJumper.groundPosition = exitRight;
         }
         else
         {
-            characterJumper.initialPosition = exitLeft;
+            characterJumper.groundPosition = exitLeft;
         }
     }
 }

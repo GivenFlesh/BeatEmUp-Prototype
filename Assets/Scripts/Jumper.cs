@@ -11,11 +11,11 @@ public class Jumper : MonoBehaviour
     [Range(1,50)][SerializeField] float jumpInitialSpeed = 8f;
     [HideInInspector] public float velocity = 0f;
     [HideInInspector] public float slopeVariance = 0f;
-    [HideInInspector] public Vector3 initialPosition;
+    [HideInInspector] public Vector3 groundPosition;
     [HideInInspector] public bool isOnSlope;
     Vector3 jumpTarget;
     Animator _animator;
-    bool isAirborn = false;
+    [HideInInspector] public bool isAirborn = false;
 
 
     void Awake()
@@ -25,18 +25,18 @@ public class Jumper : MonoBehaviour
 
     void Start()
     {
-        initialPosition = transform.localPosition;
+        groundPosition = transform.localPosition;
     }
 
     void Update()
     {
         if(!isAirborn)
         {
-            transform.localPosition = initialPosition;
+            transform.localPosition = groundPosition;
         }
     }
 
-    public float GetHeight() { return transform.localPosition.y - initialPosition.y; }
+    public float GetHeight() { return transform.localPosition.y - groundPosition.y; }
 
     public void Jump()
     {
@@ -65,7 +65,7 @@ public class Jumper : MonoBehaviour
 
     public void SetMaxHeight(float heightFromGround)
     {
-        jumpTarget = initialPosition + (Vector3.up*heightFromGround);
+        jumpTarget = groundPosition + (Vector3.up*heightFromGround);
     }
 
     IEnumerator ManageVerticalVelocity()
@@ -75,13 +75,13 @@ public class Jumper : MonoBehaviour
         {
             UpdateCollision();
             Vector2 delta = new Vector2();
-            delta.y = transform.localPosition.y + (velocity*Time.fixedDeltaTime);
-            delta.y = Mathf.Clamp(delta.y,initialPosition.y,jumpTarget.y);
+            delta.y = transform.localPosition.y + (velocity*Time.deltaTime);
+            delta.y = Mathf.Clamp(delta.y,groundPosition.y,jumpTarget.y);
             transform.localPosition = delta;
-            velocity = Mathf.Clamp(velocity - (gravityScale * 30f * Time.fixedDeltaTime),-40f,40);
-            yield return new WaitForFixedUpdate();
+            velocity = Mathf.Clamp(velocity - (gravityScale * 30f * Time.deltaTime),-40f,40);
+            yield return new WaitForEndOfFrame();
         }
-        while ( transform.localPosition != initialPosition );
+        while ( transform.localPosition != groundPosition );
         UpdateCollision();
         velocity = 0;
         _animator.SetBool("isAirborn",false);
