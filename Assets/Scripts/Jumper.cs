@@ -11,7 +11,8 @@ public class Jumper : MonoBehaviour
     [Range(1,50)][SerializeField] float jumpInitialSpeed = 8f;
     [HideInInspector] public float velocity = 0f;
     [HideInInspector] public float slopeVariance = 0f;
-    Vector3 initialPosition;
+    [HideInInspector] public Vector3 initialPosition;
+    [HideInInspector] public bool isOnSlope;
     Vector3 jumpTarget;
     Animator _animator;
 
