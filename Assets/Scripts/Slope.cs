@@ -41,17 +41,13 @@ public class Slope : MonoBehaviour
         {
             otherMover.onSlope = true;
             StartCoroutine(otherMover.SlopeMoveX(slopeValue/100f));
-        }
-        Jumper otherJumper = other.GetComponent<Jumper>();
-        if (otherJumper != null)
-        {
-            otherJumper.slopeVariance = slopeValue;
-        }
-        if(otherMover != null)
-        {
-            Jumper slopedJumper = otherMover.GetComponentInChildren<Jumper>();
-            if(!slopedJumper.isOnSlope)
-                StartCoroutine(SlopeClimb(slopedJumper));
+            Jumper otherJumper = otherMover.GetComponentInChildren<Jumper>();
+            if (otherJumper != null)
+            {
+                otherJumper.slopeVariance = slopeValue;
+                if(!otherJumper.isOnSlope)
+                    StartCoroutine(SlopeClimb(otherJumper));
+            }
         }
     }
 
@@ -61,13 +57,13 @@ public class Slope : MonoBehaviour
         if (otherMover != null)
         {
             otherMover.onSlope = false;
-            otherMover.GetComponentInChildren<Jumper>().isOnSlope = false;
+            Jumper otherJumper = otherMover.GetComponentInChildren<Jumper>();
+            if (otherJumper != null)
+            {
+                otherJumper.isOnSlope = false;
+                otherJumper.slopeVariance = 0f;
+            }    
         }
-        Jumper otherJumper = other.GetComponent<Jumper>();
-        if (otherJumper != null)
-        {
-            otherJumper.slopeVariance = 0f;
-        }    
     }
 
     IEnumerator SlopeClimb(Jumper characterJumper)

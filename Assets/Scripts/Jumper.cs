@@ -9,6 +9,7 @@ public class Jumper : MonoBehaviour
     [Range(0.01f,2f)][SerializeField] float gravityScale = 0.5f;
     [Range(1,10)][SerializeField] float jumpMaxHeight = 4f;
     [Range(1,50)][SerializeField] float jumpInitialSpeed = 8f;
+    [SerializeField] Transform shadowObject;
     [HideInInspector] public float velocity = 0f;
     [HideInInspector] public float slopeVariance = 0f;
     [HideInInspector] public Vector3 groundPosition;
@@ -16,6 +17,7 @@ public class Jumper : MonoBehaviour
     Vector3 jumpTarget;
     Animator _animator;
     [HideInInspector] public bool isAirborn = false;
+    Vector2 shadowDefaultPosition;
 
 
     void Awake()
@@ -26,6 +28,7 @@ public class Jumper : MonoBehaviour
     void Start()
     {
         groundPosition = transform.localPosition;
+        shadowDefaultPosition = shadowObject.localPosition;
     }
 
     void Update()
@@ -34,6 +37,7 @@ public class Jumper : MonoBehaviour
         {
             transform.localPosition = groundPosition;
         }
+        shadowObject.localPosition = new Vector2 (0f, shadowDefaultPosition.y - GetHeight());
     }
 
     public float GetHeight() { return transform.localPosition.y - groundPosition.y; }
