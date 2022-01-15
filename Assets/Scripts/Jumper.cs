@@ -15,7 +15,7 @@ public class Jumper : MonoBehaviour
     [HideInInspector] public bool isOnSlope;
     Vector3 jumpTarget;
     Animator _animator;
-
+    bool isAirborn = false;
 
 
     void Awake()
@@ -26,6 +26,14 @@ public class Jumper : MonoBehaviour
     void Start()
     {
         initialPosition = transform.localPosition;
+    }
+
+    void Update()
+    {
+        if(!isAirborn)
+        {
+            transform.localPosition = initialPosition;
+        }
     }
 
     public float GetHeight() { return transform.localPosition.y - initialPosition.y; }
@@ -62,6 +70,7 @@ public class Jumper : MonoBehaviour
 
     IEnumerator ManageVerticalVelocity()
     {
+        isAirborn = true; 
         do
         {
             UpdateCollision();
@@ -76,6 +85,7 @@ public class Jumper : MonoBehaviour
         UpdateCollision();
         velocity = 0;
         _animator.SetBool("isAirborn",false);
+        isAirborn = false;
     }
 
     void UpdateCollision()

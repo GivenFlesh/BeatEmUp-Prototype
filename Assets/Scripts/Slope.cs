@@ -47,9 +47,11 @@ public class Slope : MonoBehaviour
         {
             otherJumper.slopeVariance = slopeValue;
         }
-        if(otherJumper != null && otherMover != null && !otherJumper.isOnSlope)
+        if(otherMover != null)
         {
-            // StartCoroutine(SlopeClimb(otherJumper));
+            Jumper slopedJumper = otherMover.GetComponentInChildren<Jumper>();
+            if(!slopedJumper.isOnSlope)
+                StartCoroutine(SlopeClimb(slopedJumper));
         }
     }
 
@@ -59,37 +61,42 @@ public class Slope : MonoBehaviour
         if (otherMover != null)
         {
             otherMover.onSlope = false;
+            otherMover.GetComponentInChildren<Jumper>().isOnSlope = false;
         }
         Jumper otherJumper = other.GetComponent<Jumper>();
         if (otherJumper != null)
         {
             otherJumper.slopeVariance = 0f;
-        }    }
+        }    
+    }
 
-    // IEnumerator SlopeClimb(Jumper characterJumper)
-    // {
-    //     characterJumper.isOnSlope = true;
-    //     Vector2 originalPosition = characterJumper.initialPosition;
-    //     Transform characterTransform = characterJumper.transform.parent;
-    //     Vector2 exitLeft = 
-    //     float center = minXBounds + (slopeLength/2);
-    //     int enteredDirection = (int)Mathf.Sign(Mathf.Abs(characterTransform.position.x) - Mathf.Abs(center));
-    //     while(characterJumper.isOnSlope)
-    //     {
-    //         float delta = Mathf.Abs(characterTransform.position.x-maxXBounds);
-    //         delta /= slopeLength;
-    //         characterJumper.initialPosition.y = originalPosition.y + (slopeHeight * delta);
-    //         yield return new WaitForEndOfFrame();
-    //     }
-    //     int exitDirection = (int)Mathf.Sign(Mathf.Abs(characterTransform.position.x) - Mathf.Abs(center));
-    //     if (exitDirection == slopeClimbDirection)
-    //     {
-    //         characterJumper.initialPosition.y = originalPosition.y + slopeHeight;
-    //     }
-    //     else
-    //     {
-    //         characterJumper.initialPosition.y = originalPosition.y - slopeHeight;
-    //     }
-
-    // }
+    IEnumerator SlopeClimb(Jumper characterJumper)
+    {
+        characterJumper.isOnSlope = true;
+        Vector2 originalPosition = characterJumper.initialPosition;
+        Transform characterTransform = characterJumper.transform.parent;
+        float center = minXBounds + (slopeLength/2);
+        int enteredDirection = (int)Mathf.Sign(Mathf.Abs(characterTransform.position.x) - Mathf.Abs(center));
+        Vector2 exitLeft = new Vector2 ( 0f,
+            -1f * ((-1f - (float)enteredDirection) / 2f) * slopeHeight * (float)slopeClimbDirection * (float)enteredDirection + originalPosition.y);
+        Vector2 exitRight = new Vector2 ( 0f,
+            -1f * ((1f - (float)enteredDirection) / 2f) * slopeHeight * (float)slopeClimbDirection * (float)enteredDirection + originalPosition.y);
+        while(characterJumper.isOnSlope)
+        {
+            float delta = Mathf.Abs(maxXBounds-characterTransform.position.x);
+            delta /= slopeLength;
+            delta = 1 - delta;
+            characterJumper.initialPosition.y = originalPosition.y + (slopeHeight * delta);
+            yield return new WaitForEndOfFrame();
+        }
+        int exitDirection = (int)Mathf.Sign(Mathf.Abs(characterTransform.position.x) - Mathf.Abs(center));
+        if (exitDirection == 1)
+        {
+            characterJumper.initialPosition = exitRight;
+        }
+        else
+        {
+            characterJumper.initialPosition = exitLeft;
+        }
+    }
 }
