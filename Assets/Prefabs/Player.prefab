@@ -103,6 +103,18 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256928, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1276006887, guid: 113c96d208383c049a05bbda9bbb708e, type: 3}
+    - target: {fileID: 137572698116256931, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137572698116256931, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.875
+      objectReference: {fileID: 0}
     - target: {fileID: 137572698116256932, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
       propertyPath: maxHealth
       value: 100

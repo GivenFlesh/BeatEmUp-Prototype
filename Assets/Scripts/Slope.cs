@@ -71,21 +71,21 @@ public class Slope : MonoBehaviour
         characterJumper.isOnSlope = true;
         Vector2 originalPosition = characterJumper.groundPosition;
         Transform characterTransform = characterJumper.transform.parent;
-        float center = minXBounds + (slopeLength/2);
-        int enteredDirection = (int)Mathf.Sign(Mathf.Abs(characterTransform.position.x) - Mathf.Abs(center));
+        float center = _collider.bounds.min.x-0.5f + (slopeLength/2);
+        int enteredDirection = (int)Mathf.Sign(characterTransform.position.x - center);
         Vector2 exitLeft = new Vector2 ( 0f,
-            -1f * ((-1f - (float)enteredDirection) / 2f) * slopeHeight * (float)slopeClimbDirection * (float)enteredDirection + originalPosition.y);
+            -1f * ((-1f - (float)enteredDirection) / -2f) * slopeHeight * (float)slopeClimbDirection * (float)enteredDirection + originalPosition.y);
         Vector2 exitRight = new Vector2 ( 0f,
             -1f * ((1f - (float)enteredDirection) / 2f) * slopeHeight * (float)slopeClimbDirection * (float)enteredDirection + originalPosition.y);
         while(characterJumper.isOnSlope)
         {
             float delta = Mathf.Abs(maxXBounds-characterTransform.position.x);
             delta /= slopeLength;
-            delta = 1 - delta;
+            delta = (((-1 - enteredDirection * -slopeClimbDirection) / -2) - delta);
             characterJumper.groundPosition.y = originalPosition.y + (slopeHeight * delta);
             yield return new WaitForEndOfFrame();
         }
-        int exitDirection = (int)Mathf.Sign(Mathf.Abs(characterTransform.position.x) - Mathf.Abs(center));
+        int exitDirection = (int)Mathf.Sign(characterTransform.position.x - center);
         if (exitDirection == 1)
         {
             characterJumper.groundPosition = exitRight;
