@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 [RequireComponent(typeof(Mover),typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     Rigidbody2D _rigidBody;
     Jumper _jumper;
     Animator _animator;
+    public TextMeshProUGUI debugText;
+
     
     void Awake()
     {

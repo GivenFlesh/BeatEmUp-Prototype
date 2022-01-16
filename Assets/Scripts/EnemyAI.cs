@@ -32,7 +32,9 @@ public class EnemyAI : MonoBehaviour
             target = targetTransform.position;
             target.x += Mathf.Sign(transform.position.x-target.x);
             target.y += Mathf.Sign(transform.position.y-target.y)/2;
-            transform.position = Vector2.MoveTowards(transform.position,target,2.5f*Time.deltaTime);
+            target = ( target - (Vector2)transform.position ).normalized;
+            _animator.SetFloat("MoveX",target.x);
+            _animator.SetFloat("MoveY",target.y);
 
         if(targetTransform.position.x < transform.position.x && transform.localScale.x == 1f)
             { transform.localScale = new Vector2(-1f,transform.localScale.y); }
