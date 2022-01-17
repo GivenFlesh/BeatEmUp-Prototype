@@ -11,7 +11,7 @@ public class Jumper : MonoBehaviour
     [Range(1,50)][SerializeField] float jumpInitialSpeed = 8f;
     [SerializeField] Transform shadowObject;
     [HideInInspector] public float velocity = 0f;
-    [HideInInspector] public float slopeVariance = 0f;
+    [HideInInspector] public float slopeAngle = 0f;
     [HideInInspector] public Vector3 groundPosition;
     [HideInInspector] public bool isOnSlope;
     Vector3 jumpTarget;
@@ -42,13 +42,13 @@ public class Jumper : MonoBehaviour
 
     public float GetHeight() { return transform.localPosition.y - groundPosition.y; }
 
-    public void Jump()
+    public void Jump(float strength)
     {
         if(!_animator.GetBool("isFalling"))
         {
             SetMaxHeight(jumpMaxHeight);
             _animator.SetBool("isAirborn",true);
-            velocity = jumpInitialSpeed;
+            velocity = jumpInitialSpeed*strength;
             StartCoroutine(ManageVerticalVelocity());
         }
     }
@@ -80,7 +80,7 @@ public class Jumper : MonoBehaviour
             UpdateCollision();
             Vector2 delta = new Vector2();
             delta.y = transform.localPosition.y + (velocity*Time.deltaTime);
-            delta.y = Mathf.Clamp(delta.y,groundPosition.y,jumpTarget.y);
+            delta.y = Mathf.Clamp(delta.y,groundPosition.y,float.MaxValue); 
             transform.localPosition = delta;
             velocity = Mathf.Clamp(velocity - (gravityScale * 30f * Time.deltaTime),-40f,40);
             yield return new WaitForEndOfFrame();

@@ -95,12 +95,12 @@ public class Mover : MonoBehaviour
         _rigidBody.velocity = new Vector2(_rigidBody.velocity.x,delta);
     }
 
-    public IEnumerator SlopeMoveX(float strength)
+    public IEnumerator SlopeMoveX(float angle)
     {
         do
         {
             Vector2 delta = _rigidBody.velocity;
-            delta.x += strength;
+            delta.x -= Mathf.Sin(angle) / 7f;
             _rigidBody.velocity = delta;
             if(Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && _rigidBody.velocity.x != 0)
             {

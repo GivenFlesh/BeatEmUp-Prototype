@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Slope : MonoBehaviour
 {
-    [SerializeField] float slopeValue = 10f;
     [SerializeField] float slopeHeight = 4f;
 
     BoxCollider2D _collider;
@@ -12,6 +11,7 @@ public class Slope : MonoBehaviour
     float maxXBounds;
     float slopeLength;
     int slopeClimbDirection;
+    float slopeAngle;
     
     void Awake()
     {
@@ -20,7 +20,7 @@ public class Slope : MonoBehaviour
 
     void Start()
     {
-        slopeClimbDirection = (int)-Mathf.Sign(slopeValue);
+        slopeClimbDirection = (int)-Mathf.Sign(transform.localScale.x);
         if(slopeClimbDirection == 1)
         {
             minXBounds = _collider.bounds.min.x-0.5f;
@@ -32,6 +32,8 @@ public class Slope : MonoBehaviour
             maxXBounds = _collider.bounds.min.x-0.5f;
         }
         slopeLength = Mathf.Abs(maxXBounds - minXBounds);
+        slopeAngle =((1 - slopeClimbDirection) / 2 * 360) + (Mathf.Atan2(slopeHeight,slopeLength-1f) * Mathf.Rad2Deg) * slopeClimbDirection;
+        Debug.Log(slopeAngle);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -40,11 +42,11 @@ public class Slope : MonoBehaviour
         if (otherMover != null)
         {
             otherMover.onSlope = true;
-            StartCoroutine(otherMover.SlopeMoveX(slopeValue/100f));
+            StartCoroutine(otherMover.SlopeMoveX(180-slopeAngle));
             Jumper otherJumper = otherMover.GetComponentInChildren<Jumper>();
             if (otherJumper != null)
             {
-                otherJumper.slopeVariance = slopeValue;
+                otherJumper.slopeAngle = slopeAngle;
                 if(!otherJumper.isOnSlope)
                     StartCoroutine(SlopeClimb(otherJumper));
             }
@@ -61,7 +63,7 @@ public class Slope : MonoBehaviour
             if (otherJumper != null)
             {
                 otherJumper.isOnSlope = false;
-                otherJumper.slopeVariance = 0f;
+                otherJumper.slopeAngle = 0f;
             }    
         }
     }
