@@ -576,7 +576,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCam: {fileID: 2053016164}
-  enemiesToSpawn: []
+  spawnedEnemies: []
+  enemiesToSpawn:
+  - {fileID: 137572697941017785, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+  - {fileID: 137572697941017785, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
+  - {fileID: 137572697941017785, guid: 63d89d1f15716f048a9ea358b5dae1e3, type: 3}
 --- !u!4 &356881740
 Transform:
   m_ObjectHideFlags: 0
