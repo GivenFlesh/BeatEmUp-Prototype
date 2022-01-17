@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     Rigidbody2D _rigidbody;
     bool isAttacking = false;
     Vector2 target;
+    [HideInInspector] public Spawner spawnerSource;
 
 
     void Awake()
@@ -33,8 +34,16 @@ public class EnemyAI : MonoBehaviour
             target.x += Mathf.Sign(transform.position.x-target.x);
             target.y += Mathf.Sign(transform.position.y-target.y)/2;
             target = ( target - (Vector2)transform.position ).normalized;
-            _animator.SetFloat("MoveX",target.x);
-            _animator.SetFloat("MoveY",target.y);
+            if(IsCloseToPlayer())
+            { 
+                _animator.SetFloat("MoveX",0);
+                _animator.SetFloat("MoveY",0);
+            }
+            else
+            {
+                _animator.SetFloat("MoveX",target.x);
+                _animator.SetFloat("MoveY",target.y);
+            }
 
         if(targetTransform.position.x < transform.position.x && transform.localScale.x == 1f)
             { transform.localScale = new Vector2(-1f,transform.localScale.y); }
@@ -92,5 +101,13 @@ public class EnemyAI : MonoBehaviour
         _animator.SetBool(animatorBool,true);
         yield return new WaitForFixedUpdate();
         _animator.SetBool(animatorBool,false);
+    }
+
+    void OnDestroy()
+    {
+        if (spawnerSource != null)
+        {
+            spawnerSource.spawnedEnemies.Remove(gameObject);
+        }
     }
 }
