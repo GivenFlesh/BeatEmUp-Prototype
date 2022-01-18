@@ -19,6 +19,10 @@ public class Jumper : MonoBehaviour
     [HideInInspector] public bool isAirborn = false;
     Vector2 shadowDefaultPosition;
 
+    public float jumpPower
+    {
+        get => jumpInitialSpeed;
+    }
 
     void Awake()
     {
@@ -48,7 +52,7 @@ public class Jumper : MonoBehaviour
         {
             SetMaxHeight(jumpMaxHeight);
             _animator.SetBool("isAirborn",true);
-            velocity = jumpInitialSpeed*strength;
+            velocity = strength + ( jumpInitialSpeed * Mathf.Cos(slopeAngle / Mathf.Rad2Deg));
             StartCoroutine(ManageVerticalVelocity());
         }
     }
@@ -85,7 +89,7 @@ public class Jumper : MonoBehaviour
             velocity = Mathf.Clamp(velocity - (gravityScale * 30f * Time.deltaTime),-40f,40);
             yield return new WaitForEndOfFrame();
         }
-        while ( transform.localPosition != groundPosition );
+        while ( transform.localPosition.y != groundPosition.y );
         UpdateCollision();
         velocity = 0;
         _animator.SetBool("isAirborn",false);
