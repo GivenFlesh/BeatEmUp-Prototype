@@ -12,7 +12,7 @@ public class Mover : MonoBehaviour
     float defaultMoveSpeed;
     int defaultAccelFrames;
     int defaultDecelFrames;
-    [HideInInspector] public bool onSlope = false;
+    [HideInInspector] public float groundAngle = 0;
 
     SpriteRenderer _renderer;
     Rigidbody2D _rigidBody;
@@ -45,18 +45,15 @@ public class Mover : MonoBehaviour
 
     public void MoveWithAcceleration(Vector2 direction)
     {
-        Vector2 delta = _rigidBody.velocity;
-        if(Mathf.Abs(delta.x) < moveSpeed || Mathf.Sign(direction.x) != Mathf.Sign(delta.x))
-        {
-            delta.x += (direction.x*moveSpeed*(1/(float)accelerationFrames));
-            delta.x = Mathf.Clamp(delta.x,-moveSpeed,moveSpeed);
-        }
-        if(Mathf.Abs(delta.y) < moveSpeed*zOffsetRatio || Mathf.Sign(direction.y) != Mathf.Sign(delta.y))
-        {
-            delta.y += (direction.y*(moveSpeed*zOffsetRatio)*(1/(float)accelerationFrames));
-            delta.y = Mathf.Clamp(delta.y,-moveSpeed*zOffsetRatio,moveSpeed*zOffsetRatio);
-        }
-        _rigidBody.velocity = delta;
+        Vector2 delta = direction*moveSpeed*(1/(float)accelerationFrames);
+        delta.y *= zOffsetRatio;
+        Vector2 maxValue = Vector2.one * moveSpeed;
+        maxValue.y *= zOffsetRatio;
+        maxValue.x = Mathf.Abs(maxValue.x*Mathf.Sign(direction.x)-_rigidBody.velocity.x);
+        maxValue.y = Mathf.Abs(maxValue.y*Mathf.Sign(direction.y)-_rigidBody.velocity.y);
+        delta.x = Mathf.Clamp(delta.x,-maxValue.x,maxValue.x);
+        delta.y = Mathf.Clamp(delta.y,-maxValue.y,maxValue.y);
+        _rigidBody.velocity += delta;
         if(Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && direction.x != 0)
         {
             FlipSprite();
@@ -65,18 +62,12 @@ public class Mover : MonoBehaviour
 
     public void SlowPlayerX()
     {
-        float delta = _rigidBody.velocity.x;
-        if (delta > 0f)
-        {
-            delta -= moveSpeed*(1/(float)decelerationFrames);
-            delta = Mathf.Clamp(delta,Mathf.Epsilon,moveSpeed);
-        }
-        if (delta < 0f)
-        {
-            delta += moveSpeed*(1/(float)decelerationFrames);
-            delta = Mathf.Clamp(delta,-moveSpeed,Mathf.Epsilon);
-        }
-        _rigidBody.velocity = new Vector2(delta,_rigidBody.velocity.y);
+        float currentSpeed = _rigidBody.velocity.x;
+        Vector2 delta = new Vector2(moveSpeed * Mathf.Sign(currentSpeed)*(1/(float)decelerationFrames),0);
+        delta.x = Mathf.Clamp(delta.x,
+            (1f - Mathf.Sign(currentSpeed)) / 2 * currentSpeed,
+            (1f + Mathf.Sign(currentSpeed)) / 2 * currentSpeed);
+        _rigidBody.velocity -= delta;
     }
 
     public void SlowPlayerY()
@@ -100,7 +91,7 @@ public class Mover : MonoBehaviour
         do
         {
             Vector2 delta = _rigidBody.velocity;
-            delta.x -= Mathf.Sin(angle) / 7f;
+            delta.x -= Mathf.Sin(angle / Mathf.Rad2Deg) / 5f;
             _rigidBody.velocity = delta;
             if(Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && _rigidBody.velocity.x != 0)
             {
@@ -108,6 +99,6 @@ public class Mover : MonoBehaviour
             }
             yield return new WaitForFixedUpdate();
         }
-        while(onSlope);
+        while(groundAngle != 0);
     }
 }

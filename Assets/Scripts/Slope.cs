@@ -33,7 +33,6 @@ public class Slope : MonoBehaviour
         }
         slopeLength = Mathf.Abs(maxXBounds - minXBounds);
         slopeAngle =((1 - slopeClimbDirection) / 2 * 360) + (Mathf.Atan2(slopeHeight,slopeLength-1f) * Mathf.Rad2Deg) * slopeClimbDirection;
-        Debug.Log(slopeAngle);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -41,7 +40,7 @@ public class Slope : MonoBehaviour
         Mover otherMover = other.GetComponent<Mover>();
         if (otherMover != null)
         {
-            otherMover.onSlope = true;
+            otherMover.groundAngle = slopeAngle;
             StartCoroutine(otherMover.SlopeMoveX(180-slopeAngle));
             Jumper otherJumper = otherMover.GetComponentInChildren<Jumper>();
             if (otherJumper != null)
@@ -58,7 +57,7 @@ public class Slope : MonoBehaviour
         Mover otherMover = other.GetComponent<Mover>();
         if (otherMover != null)
         {
-            otherMover.onSlope = false;
+            otherMover.groundAngle = 0;
             Jumper otherJumper = otherMover.GetComponentInChildren<Jumper>();
             if (otherJumper != null)
             {

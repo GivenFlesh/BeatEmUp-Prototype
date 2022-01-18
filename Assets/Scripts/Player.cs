@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     {
         _animator.SetFloat("MoveX",rawInput.x);
         _animator.SetFloat("MoveY",rawInput.y);
+        debugText.text = _rigidBody.velocity.ToString();
     }
 
     void OnMove(InputValue value)

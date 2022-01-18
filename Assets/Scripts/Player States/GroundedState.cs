@@ -19,11 +19,13 @@ public class GroundedState : StateMachineBehaviour
     {
         Vector2 dpad = new Vector2 (animator.GetFloat("MoveX"),animator.GetFloat("MoveY"));
         _mover.MoveWithAcceleration(dpad);
-        if (dpad.x == 0 && !_mover.onSlope || dpad.x != 0 && Mathf.Sign(_rigidbody.velocity.x) != Mathf.Sign(dpad.x))
+        if (dpad.x == 0 && System.Math.Sign(-Mathf.Sin(_mover.groundAngle / Mathf.Rad2Deg)) != Mathf.Sign(_rigidbody.velocity.x) 
+            ||
+            dpad.x != 0 && Mathf.Sign(_rigidbody.velocity.x) != Mathf.Sign(dpad.x) )
         { _mover.SlowPlayerX(); }
         if (dpad.y == 0 || Mathf.Sign(_rigidbody.velocity.y) != Mathf.Sign(dpad.y))
         { _mover.SlowPlayerY(); }
-
+        
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

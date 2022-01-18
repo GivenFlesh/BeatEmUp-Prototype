@@ -11,7 +11,7 @@ public class JumpStartState : StateMachineBehaviour
     {
       _jumper = animator.GetComponent<Jumper>();
       _rigidbody = animator.GetComponentInParent<Rigidbody2D>();
-      animator.SetFloat("jumpMomentumX",_rigidbody.velocity.x - ( 6 * Mathf.Sin(_jumper.slopeAngle)));
+      animator.SetFloat("jumpMomentumX",_rigidbody.velocity.x - ( 6 * Mathf.Sin(_jumper.slopeAngle / Mathf.Rad2Deg)));
       animator.SetFloat("jumpMomentumY",_rigidbody.velocity.y);
     }
 
@@ -21,7 +21,7 @@ public class JumpStartState : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-      float delta = Mathf.Abs(animator.GetFloat("jumpMomentumY")) + Mathf.Abs(animator.GetFloat("jumpMomentumX") - Mathf.Abs(_jumper.slopeAngle));
+      float delta = Mathf.Abs(animator.GetFloat("jumpMomentumY")) + Mathf.Abs(animator.GetFloat("jumpMomentumX"));
       delta = delta / 12f + 0.75f;
       _jumper.Jump(delta);
     }
