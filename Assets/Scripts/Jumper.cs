@@ -89,9 +89,10 @@ public class Jumper : MonoBehaviour
             velocity = Mathf.Clamp(velocity - (gravityScale * 30f * Time.deltaTime),-40f,40);
             yield return new WaitForEndOfFrame();
         }
-        while ( transform.localPosition.y != groundPosition.y );
+        while ( Mathf.Abs(transform.localPosition.y - groundPosition.y) >= 0.01f || velocity >= 0f);
         UpdateCollision();
         velocity = 0;
+        transform.localPosition = groundPosition;
         _animator.SetBool("isAirborn",false);
         isAirborn = false;
     }
