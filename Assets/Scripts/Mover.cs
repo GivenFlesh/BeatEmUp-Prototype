@@ -63,7 +63,7 @@ public class Mover : MonoBehaviour
     public void SlowPlayerX()
     {
         float currentSpeed = _rigidBody.velocity.x;
-        Vector2 delta = new Vector2(moveSpeed * Mathf.Sign(currentSpeed)*(1/(float)decelerationFrames),0);
+        Vector2 delta = new Vector2(moveSpeed * Mathf.Sign(currentSpeed) * Time.deltaTime / (decelerationFrames * Time.fixedDeltaTime),0);
         delta.x = Mathf.Clamp(delta.x,
             (1f - Mathf.Sign(currentSpeed)) / 2 * currentSpeed,
             (1f + Mathf.Sign(currentSpeed)) / 2 * currentSpeed);
@@ -72,18 +72,12 @@ public class Mover : MonoBehaviour
 
     public void SlowPlayerY()
     {
-        float delta = _rigidBody.velocity.y;
-        if (delta > 0f)
-        {
-            delta -= moveSpeed*zOffsetRatio*(1/(float)decelerationFrames);
-            delta = Mathf.Clamp(delta,0f,moveSpeed*zOffsetRatio);
-        }
-        if (delta < 0f)
-        {
-            delta += moveSpeed*zOffsetRatio*(1/(float)decelerationFrames);
-            delta = Mathf.Clamp(delta,-moveSpeed*zOffsetRatio,0f);
-        }
-        _rigidBody.velocity = new Vector2(_rigidBody.velocity.x,delta);
+        float currentSpeed = _rigidBody.velocity.y;
+        Vector2 delta = new Vector2(0,moveSpeed * zOffsetRatio * Mathf.Sign(currentSpeed) * Time.deltaTime / (decelerationFrames * Time.fixedDeltaTime));
+        delta.y = Mathf.Clamp(delta.y,
+            (1f - Mathf.Sign(currentSpeed)) / 2 * currentSpeed,
+            (1f + Mathf.Sign(currentSpeed)) / 2 * currentSpeed);
+        _rigidBody.velocity -= delta;
     }
 
     public IEnumerator SlopeMoveX(float angle)
