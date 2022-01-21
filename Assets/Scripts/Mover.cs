@@ -45,12 +45,12 @@ public class Mover : MonoBehaviour
 
     public void MoveWithAcceleration(Vector2 direction)
     {
-        Vector2 delta = direction*moveSpeed*(1/(float)accelerationFrames);
+        Vector2 delta = direction * moveSpeed * Time.deltaTime / (accelerationFrames * Time.fixedDeltaTime);
         delta.y *= zOffsetRatio;
         Vector2 maxValue = Vector2.one * moveSpeed;
         maxValue.y *= zOffsetRatio;
-        maxValue.x = Mathf.Abs(maxValue.x*Mathf.Sign(direction.x)-_rigidBody.velocity.x);
-        maxValue.y = Mathf.Abs(maxValue.y*Mathf.Sign(direction.y)-_rigidBody.velocity.y);
+        maxValue.x = Mathf.Abs(maxValue.x*Mathf.Sign(direction.x)-Mathf.Clamp(_rigidBody.velocity.x,-moveSpeed,moveSpeed));
+        maxValue.y = Mathf.Abs(maxValue.y*Mathf.Sign(direction.y)-Mathf.Clamp(_rigidBody.velocity.y,-moveSpeed,moveSpeed));
         delta.x = Mathf.Clamp(delta.x,-maxValue.x,maxValue.x);
         delta.y = Mathf.Clamp(delta.y,-maxValue.y,maxValue.y);
         _rigidBody.velocity += delta;
@@ -91,7 +91,7 @@ public class Mover : MonoBehaviour
         do
         {
             Vector2 delta = _rigidBody.velocity;
-            delta.x -= Mathf.Sin(angle / Mathf.Rad2Deg) / 5f;
+            delta.x -= Mathf.Sin(angle / Mathf.Rad2Deg) / 10f;
             _rigidBody.velocity = delta;
             if(Mathf.Sign(_rigidBody.velocity.x) != transform.localScale.x && _rigidBody.velocity.x != 0)
             {
