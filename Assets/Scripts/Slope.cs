@@ -12,10 +12,12 @@ public class Slope : MonoBehaviour
     float slopeLength;
     int slopeClimbDirection;
     float slopeAngle;
-    
+    CameraBoundsUpdater playerFollow;
+
     void Awake()
     {
         _collider = GetComponent<BoxCollider2D>();
+        playerFollow = Camera.main.GetComponentInChildren<CameraBoundsUpdater>();
     }
 
     void Start()
@@ -69,6 +71,7 @@ public class Slope : MonoBehaviour
 
     IEnumerator SlopeClimb(Jumper characterJumper)
     {
+        Player player = characterJumper.transform.parent.GetComponent<Player>();
         characterJumper.isOnSlope = true;
         Vector2 originalPosition = characterJumper.groundPosition;
         Transform characterTransform = characterJumper.transform.parent;
@@ -84,16 +87,21 @@ public class Slope : MonoBehaviour
             delta /= slopeLength;
             delta = (((-1 - enteredDirection * -slopeClimbDirection) / -2) - delta);
             characterJumper.groundPosition.y = originalPosition.y + (slopeHeight * delta);
+            if (player != null)
+                playerFollow.UpdateCameraBounds(characterJumper.groundPosition);
             yield return new WaitForEndOfFrame();
         }
         int exitDirection = (int)Mathf.Sign(characterTransform.position.x - center);
         if (exitDirection == 1)
         {
             characterJumper.groundPosition = exitRight;
+            if (player != null)
+                playerFollow.UpdateCameraBounds(characterJumper.groundPosition);
         }
         else
         {
             characterJumper.groundPosition = exitLeft;
-        }
+            if (player != null)
+                playerFollow.UpdateCameraBounds(characterJumper.groundPosition);        }
     }
 }

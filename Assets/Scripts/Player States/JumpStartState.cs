@@ -21,7 +21,7 @@ public class JumpStartState : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-      float delta = _rigidbody.velocity.x * Mathf.Tan(_jumper.slopeAngle / Mathf.Rad2Deg) / 2;
+      float delta = _rigidbody.velocity.x * Mathf.Tan(_jumper.slopeAngle / Mathf.Rad2Deg) / 1.5f;
       _jumper.Jump(delta);
     }
 
