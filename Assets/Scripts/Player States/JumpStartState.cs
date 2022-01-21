@@ -21,10 +21,8 @@ public class JumpStartState : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-      float slopeDirection = -Mathf.Sign(_jumper.slopeAngle - 180f);
-      float delta = slopeDirection * _rigidbody.velocity.x * Mathf.Tan(_jumper.slopeAngle / Mathf.Rad2Deg);
-      Debug.Log(delta);
-      _jumper.Jump(1f);
+      float delta = _rigidbody.velocity.x * Mathf.Tan(_jumper.slopeAngle / Mathf.Rad2Deg) / 2;
+      _jumper.Jump(delta);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
