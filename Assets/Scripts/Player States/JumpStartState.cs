@@ -6,6 +6,7 @@ public class JumpStartState : StateMachineBehaviour
 {
     Jumper _jumper;
     Rigidbody2D _rigidbody;
+    [SerializeField] GameObject jumpLaunchEffect;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -23,6 +24,11 @@ public class JumpStartState : StateMachineBehaviour
     {
       float delta = _rigidbody.velocity.x * Mathf.Tan(_jumper.slopeAngle / Mathf.Rad2Deg) / 1.5f;
       _jumper.Jump(delta);
+      GameObject instance = Instantiate(jumpLaunchEffect,animator.transform.position + Vector3.down,Quaternion.identity);
+      ParticleSystem jumpParticleSystem = instance.GetComponent<ParticleSystem>();
+      jumpParticleSystem.Play();
+      var particleSystemMainSettings = jumpParticleSystem.main;
+      Destroy(instance,particleSystemMainSettings.duration+particleSystemMainSettings.startLifetime.constantMax);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

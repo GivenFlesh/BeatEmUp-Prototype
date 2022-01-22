@@ -388,6 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475126d465f321c479cf2d7bc1f4e847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpLaunchEffect: {fileID: 1383715648362612143, guid: 1bdea49981172054a858d441a871e329, type: 3}
 --- !u!1101 &-279622152990613685
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
